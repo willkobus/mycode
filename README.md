@@ -1,2 +1,2 @@
 # mycode
-Tracking my code
+Repository for work during linux/python class
