@@ -2,6 +2,7 @@
 """ Will's RPG Game """
 import requests
 import os
+import time
 
 # link to kanye west api, KanyeREST
 kanye_gibberish = "https://api.kanye.rest/"
@@ -12,7 +13,15 @@ def cls():
 
 # Greets player when game is ran
 def showGreeting():
-    print("Welcome to Will's Game")
+    print("Welcome to Will's Game\n")
+    time.sleep(1)
+    print("*distant disembodied voice*")
+    time.sleep(2)
+    print("Adventurer? Hello? ADVENTURER!!!!")
+    time.sleep(2)
+    print("You're awake! Phew...the past few weren't so, actually nevermind. Here's the deal, you are trapped in this house and there are two keys you need to get to leave.\nIs it formulaic? Obviously but it's my game so...deal with it. Good luck! I'm rooting for you! Also rooting for the Grue. Oh ya, there are grue here. Do with that information what you will.")
+    time.sleep(2)
+    print("")
 
 def showInstructions():
   #print a main menu and the commands
@@ -43,7 +52,7 @@ inventory = []
 rooms = {
 
             'Hall' : {
-                  'description' : '''The hall is the hub of the house. Centrally located it has direct access the Closet (north), Dining Room (east), Kitchen (south), and the Beat Lap (west)''',
+                  'description' : '''The hall is the hub of the house. Centrally located it has direct access the Closet (north), Dining Room (east), Kitchen (south), and the Beat Lab (west)''',
                   'south' : 'Kitchen',
                   'east'  : 'Dining Room',
                   'west' : 'Beat Lab',
@@ -85,12 +94,12 @@ rooms = {
                   'south': 'Basement',
                   'east' : 'Hall',
                   'north' : 'Office',
-                  'item' : []
-                  
+                                    
             },
             'Office' : {
                 'description' : '''There may be no Jim or Pam but its got the \"old book smell\" you all know and love. The Office has access to the Beat Lab (south).''',
                 'south' : 'Beat Lab',
+                'item' : ['translator']
             },
             'Closet' : {
                 'description' : '''It\'s like the Pantry...but for clothes and junk you want to hide before your parents come over. The Closet has access to the Hall (south).''',
@@ -118,13 +127,13 @@ rooms = {
 #start the player in the Hall
 currentRoom = 'Hall'
 
+cls()
 showGreeting()
 
 #loop forever
 while True:
 
-    
-    
+    time.sleep(.5)   
     showStatus()
     showInstructions()
 
@@ -173,9 +182,11 @@ while True:
     #if the room contains an item, and the item is the one they want to get
             if "monster" in rooms[currentRoom] and move[1].lower() in rooms[currentRoom]['monster']:
                 i = rooms[currentRoom]['monster'].index(move[1])
+                time.sleep(.5)
                            
             #display a helpful message
             print(move[1] + ' is no more!')
+            time.sleep(.5)
             # logic for when the player shoots a grue based on what room they are in
             # has grue drop key as long as key is not in inventory
             if currentRoom == 'Garden' and 'exit key 1' not in inventory:
@@ -198,19 +209,29 @@ while True:
     
     # Handles garden logic
     if currentRoom == 'Garden':
+        # reward for completing Elmer Grue Quest
         reward = 'exit key 1'
+        # logic for if plater has the big gun in inventory but does not have the translator and monster is in the room
         if 'big gun' in inventory and 'translator' not in inventory and rooms[currentRoom].get('monster') != None:
             print(f"{rooms[currentRoom].get('monster')[0].title()} stands before and appears to be saying something!")
+            time.sleep(2)
             print("Wort Wort Wort!!!")
-            print("Without a translator you have no idea what the grue is saying. Its time to go or shoot!(type go or shoot!)")
+            time.sleep(2)
+            print("Without a translator you have no idea what the grue is saying. He seems dangerous! Its time to go or shoot!(type go or shoot!)")
+        # logic for if the player has killed the monster and returns to the room    
         elif rooms[currentRoom].get('monster') == None:
             print("The still warm body of Elmer Grue is all that remains in the garden")
+        # logic for if the player completed the monster's quest and returns to the room     
         elif rooms[currentRoom]['monster'][0] == 'peaceful':
             print(f"Elmer Grue tips his hat from his rocking chair. Only the peaceful grue remains in the garden")
+        # logic for if the player enters the garden without the big gun and the translator while monster is still in it and not peaceful
         elif 'big gun' not in inventory and 'translator' not in inventory and rooms[currentRoom].get('monster') != None:
             print(f"{rooms[currentRoom].get('monster')[0].title()} stands before and appears to be saying something!")
+            time.sleep(2)
             print("Wort Wort Wort!!!")
-            print("Without a translator you have no idea what the grue is saying. Its time to go!")
+            time.sleep(2)
+            print("Without a translator you have no idea what the grue is saying. He seems dangerous! Better go!")
+        #logic for if the player 
         elif rooms[currentRoom].get('monster') != None and "translator" in inventory and 'corn seeds' in inventory and 'rocking chair' in inventory:
             print("Thank you adventurer! Here is the key as promised!")
             rooms[currentRoom]['monster'].remove('elmer grue')
@@ -219,12 +240,14 @@ while True:
             inventory.remove('corn seeds')
             inventory.remove('rocking chair')
         elif rooms[currentRoom].get('monster') != None and "translator" in inventory and 'corn seeds' in inventory:
-            print("So close! Just need the rocking chair now!")
+            print("The Key is almost yours! Just need the rocking chair now!")
         elif rooms[currentRoom].get('monster') != None and "translator" in inventory and 'rocking chair' in inventory:
-            print("So close! Just need the corn seeds now! now!")
+            print("The Key is almost yours! Just need the corn seeds now!")
         elif rooms[currentRoom].get('monster') != None and "translator" in inventory and rooms[currentRoom].get('monster') != 'peaceful':
             print('Don\'t shoot adventurer!! I am friendly!! I just want to grow some corn and sit in a rocking chair!')
+            time.sleep(2)
             print('If you bring me what I need I will give you one of the keys to leave this place!')
+            time.sleep(2)
             choice = input("Accept the grue's quest? Y/N\n>")
             if choice.lower() == 'y':
                 print("Thank you adventurer! I just need some corn seeds and a rocking chair! good luck!")
@@ -237,16 +260,20 @@ while True:
         reward = 'exit key 2'
         if 'big gun' in inventory and 'translator' not in inventory and rooms[currentRoom].get('monster') != None:
             print(f"{rooms[currentRoom].get('monster')[0].title()} stands before and appears to be saying something!")
+            time.sleep(2)
             print("Warble Warble Warble!!!")
-            print("Without a translator you have no idea what the grue is saying. Its time to go or shoot!(type go or shoot!)")
+            time.sleep(2)
+            print("Without a translator you have no idea what the grue is saying. He seems dangerous! Its time to go or shoot!(type go or shoot!)")
         elif rooms[currentRoom].get('monster') == None:
             print("The still warm body of Gorilla Grue is all that remains in the Animal Pen")
         elif rooms[currentRoom]['monster'][0] == 'peaceful':
             print(f"Gorilla Grue waves from his hammock in the trees. Only the peaceful grue remains in the Animal Pen")
         elif 'big gun' not in inventory and 'translator' not in inventory and rooms[currentRoom].get('monster') != None:
             print(f"{rooms[currentRoom].get('monster')[0].title()} stands before and appears to be saying something!")
+            time.sleep(2)
             print("Warble Warble Warble!!!")
-            print("Without a translator you have no idea what the grue is saying. Its time to go!")
+            time.sleep(2)
+            print("Without a translator you have no idea what the grue is saying. Better go!")
         elif rooms[currentRoom].get('monster') != None and "translator" in inventory and inventory.count('banana') == 2:
             print("Thank you adventurer! Here is the key as promised!")
             rooms[currentRoom]['monster'].remove('gorilla grue')
@@ -258,7 +285,9 @@ while True:
             print("Just one more banana and the key is yours!")
         elif rooms[currentRoom].get('monster') != None and "translator" in inventory:
             print('Don\'t shoot adventurer!! I am friendly!! I just need 2 bananas to help me with these awful charlie horses!')
+            time.sleep(2)
             print('If you bring me what I need I will give you one of the keys to leave this place!')
+            time.sleep(2)
             choice = input("Accept the grue's quest? Y/N\n>")
             if choice.lower() == 'y':
                 print("Thank you adventurer! I just need some corn seeds and a rocking chair! good luck!")
@@ -269,8 +298,10 @@ while True:
     # handles Beat Lab logic
     if currentRoom == 'Beat Lab':
         print(f"A wild Kanye has appeared in the {currentRoom}! What wisdom does he have for you adventurer?")
+        time.sleep(2)
         if "translator" in inventory:
             print("You have found the lair of the all-knowing Yeezy! Let me see how your progress is going so far...")
+            time.sleep(2)
             if rooms['Animal Pen'].get('monster') == None and rooms['Garden'].get('monster') == None:
                 print('You killed both Elmer and Gorilla Grue!?!?! Well I dont know what you are doing here then! You should have the exit keys already. Go on and get...')
             elif rooms['Garden'].get('monster') == None:
@@ -288,6 +319,7 @@ while True:
             kanye_quote_getter = requests.get(kanye_gibberish).json()
             kanye_no_translator = kanye_quote_getter["quote"]
             print(kanye_no_translator)
+            time.sleep(2)
             print("Well...that was utter nonsense...maybe there is a translator somewhere in the house that can help you out.")
 
     # Handles Exit room and win coditions with all endings good, less bad, bad
