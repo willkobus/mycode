@@ -1,0 +1,61 @@
+- awesome: true
+  favorites:
+    color: orange
+    ice cream: rocky road
+    movie: Serenity
+  name: Will
+- awesome: true
+  favorites:
+    color: blue
+    ice cream: Coffee
+    movie: John Wick
+  name: Justin
+- awesome: true
+  favorites:
+    color: purple
+    ice cream: bacon
+    movie: Star Wars
+  name: Chris
+  number: 15
+- awesome: true
+  favorites:
+    color: Ox Blood
+    ice cream: strawberry
+    movie: Requiem for a Dream
+  name: Samekh
+  number: 14
+- awesome: true
+  favorites:
+    color: green
+    ice cream: Coffee
+    movie: Mean Girls
+  name: Cat
+  number: 13
+- awesome: true
+  favorites:
+    color: black
+    ice cream: Superman
+    movie: Multiplicity
+  name: Nikko
+  number: 12
+- awesome: true
+  favorites:
+    color: dark brown
+    ice cream: bacon
+    movie: The Last Airbender
+  name: Marcos
+  number: 11
+- awesome: true
+  favorites:
+    color: blue
+    ice cream: vanilla
+    movie: 24
+  name: Mannie
+  number: 10
+- awesome: false
+  favorites:
+    color: red
+    ice cream: salted caramel
+    movie: The Shawshank Redemption
+  name: Chad
+  number: 0
