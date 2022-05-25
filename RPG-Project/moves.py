@@ -56,3 +56,5 @@ def shoot(move, rooms, currentRoom, inventory):
         else:
             # tells player they cannot shoot if no gun in inventory
             print("Cannot shoot, you have no gun")
+
+test = "test importing a non function"
