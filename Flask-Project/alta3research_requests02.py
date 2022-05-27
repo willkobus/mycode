@@ -5,7 +5,7 @@
 
 import requests
 
-deadAPI = "https://aux1-c2b10b81-9d6b-487b-94c6-a6b3a10fd179.live.alta3.com/deadjson"
+deadAPI = "http://10.6.163.119:2224/deadpooljson"
 
 def char_powers(name, powers):   
     with open("deadpool_facts.txt", "a") as deadpool_facts:
