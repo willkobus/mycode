@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deadpool facts</title>
+</head>
+<body>
+    <h1>Welcome to Deadpool facts</h1>
+
+    {%if dname != None%}
+    <h2>Hero name: {{ dname }}</h2>
+    {%endif%}
+
+    {%if drealName != None%}
+    <h3>Real name: {{drealName}}</h3>
+    {%endif%}
+
+    {%if dAka != None%}
+    <h4>Popular alias: {{dAka}}</h4>
+    {%endif%}
+    
+    {%if dsince != None%}
+    <h4>First seen: {{dsince}}</h4>
+    {%endif%}
+
+    
+    {% if dpowers != None%}
+    <h4>Powers</h4>
+    {% for power in dpowers%}
+    <p>{{power}}</p>
+    {%endfor%}
+    {%else%}
+    {%endif%}
+
+    {% if dabilities != None%}
+    <h4>Abilities</h4>
+    {% for ability in dabilities%}
+    <p>{{ability}}</p>
+    {%endfor%}
+    {%endif%}
+
+    {% if dweaknesses != None%}
+    <h4>Weaknesses</h4>
+    {% for weakness in dweaknesses%}
+    <p>{{weakness}}</p>
+    {%endfor%}
+    <form action = "/">
+        <input type = "submit" value = "home">
+        <h6>This button will redirect back to the homepage</h6>
+    </form>
+    {%endif%}
+
+
+    <form action = "/deadpooljson">
+        <input type = "submit" value = "json">
+        <h6>This button will redirect to the json representation of the data</h6>
+    </form>
+
+    <form action = "/deadpooljinja">
+        <input type = "submit" value = "jinja">
+        <h6>This button will redirect to the jinja formatted representation of the data</h6>
+    </form>
+
+</body>
+</html>

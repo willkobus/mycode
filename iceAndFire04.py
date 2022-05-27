@@ -47,7 +47,7 @@ def main():
 
         ## Decode the response
         got_dj = gotresp.json()
-
+        
         char_info(got_dj['name'], got_dj['gender'], got_dj['born'], got_dj['titles'], got_dj['aliases'])
 
 if __name__ == "__main__":
